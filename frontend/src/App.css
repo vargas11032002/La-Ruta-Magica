@@ -1,0 +1,69 @@
+/* App.css */
+
+/* Reset de márgenes y rellenos */
+body, html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Estilos para la aplicación */
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Estilos para el contenedor del encabezado */
+.App-header {
+  background-color: #282c34;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+/* Estilos para el logotipo */
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+  animation: App-logo-spin infinite 20s linear;
+}
+
+/* Estilos para el contenedor principal */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 4rem;
+}
+
+/* Agrega estilos adicionales según tus necesidades */
+
+/* Estilos para el enlace */
+.App-link {
+  color: #61dafb;
+}
+
+/* Animación para el logotipo */
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Estilos adicionales para hacer la aplicación más responsive */
+@media (max-width: 768px) {
+  .App-logo {
+    height: 20vmin;
+  }
+}
+
+/* Resto de tus estilos... */
