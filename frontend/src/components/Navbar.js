@@ -1,42 +1,25 @@
-import { useContext } from "react";
-import { Cart } from "../Cart";
-import CartProduct from "../components/CartProduct";
-import "./nav.css"
+// Navbar.jsx
+import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Cart } from '../Cart';
+import CartProduct from '../components/CartProduct';
+import Logout from './Logout'; // Importa el componente Logout
+import './nav.css';
 
-
-
-function Navbar() {
+function Navbar({ setAuthenticated }) {
   const cart = useContext(Cart);
-  const productsCount = cart.items.reduce(
-    (sum, product) => sum + product.quantity,
-    0
-  );
+  const productsCount = cart.items.reduce((sum, product) => sum + product.quantity, 0);
+  const navigate = useNavigate();
 
   const checkout = async () => {
-    await fetch("http://localhost:4000/checkout", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ items: cart.items }),
-    })
-      .then((response) => {
-        console.log(response);
-        return response.json();
-      })
-      .then((response) => {
-        console.log(response.url);
-        if (response.url) {
-          window.location.assign(response.url);
-        }
-      });
+   
   };
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light" id="navegador">
       <div className="container-fluid">
         <a className="navbar-brand" href="/">
-         Ruta Magica Del Cafe Del Huila
+          Ruta Magica Del Cafe Del Huila
         </a>
         <button
           className="navbar-toggler"
@@ -58,7 +41,7 @@ function Navbar() {
             </li>
             <li className="nav-item">
               <a className="nav-link active" aria-current="page" href="/Store">
-                lugares
+                Lugares
               </a>
             </li>
             <li className="nav-item">
@@ -74,8 +57,10 @@ function Navbar() {
               data-bs-toggle="modal"
               data-bs-target="#exampleModal"
             >
-               carrito de ({productsCount}) compras
+              Carrito de ({productsCount}) compras
             </button>
+
+            <Logout setAuthenticated={setAuthenticated} />
 
             <div
               className="modal fade"
@@ -87,7 +72,7 @@ function Navbar() {
                 <div className="modal-content">
                   <div className="modal-header bg-dark text-white">
                     <h1 className="modal-title fs-5" id="exampleModalLabel">
-                      carrito de compras
+                      Carrito de compras
                     </h1>
                     <button
                       type="button"
@@ -108,18 +93,16 @@ function Navbar() {
                         ))}
 
                         <h4>
-                          Total:{" "}
-                          $ {cart
+                          Total: $ {cart
                             .getTotal()
                             .toFixed(2)
                             .toString()
                             .replace(".", ",")
                             .replace(/,00/, "")}
-                          
                         </h4>
                       </div>
                     ) : (
-                      <h4 className="text-danger">el carrito esta vacio</h4>
+                      <h4 className="text-danger">El carrito está vacío</h4>
                     )}
                   </div>
                   <div className="modal-footer">
@@ -129,7 +112,7 @@ function Navbar() {
                         className="btn btn-success"
                         onClick={checkout}
                       >
-                        comprar
+                        Comprar
                       </button>
                     ) : (
                       <button
@@ -137,7 +120,7 @@ function Navbar() {
                         className="btn btn-secondary"
                         data-bs-dismiss="modal"
                       >
-                        cerrar
+                        Cerrar
                       </button>
                     )}
                   </div>
